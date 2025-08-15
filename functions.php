@@ -38,3 +38,38 @@ function cekLogin($level)
       exit;
    }
 }
+
+function tambah($data) {
+    global $conn;
+    $nik = htmlspecialchars($data["NIK"]);
+    $nama= htmlspecialchars ($data["Nama"]);
+    $alamat= htmlspecialchars ($data["Alamat"]);
+    $password= htmlspecialchars ($data["Password"]);
+    $level= htmlspecialchars ($data["Level"]);
+ 
+    // $foto= upload();
+    // if(!$foto){
+    //     return false;
+    // }
+    // $password = mysqli_real_escape_string($conn, $data["password"]);
+    // $password2 = mysqli_real_escape_string($conn, $data["password2"]);
+    // $level = $data["level"];
+    
+    // if( $password !== $password2){
+    //     echo "<script>
+    //                 alert('konfirmasi password tidak sesuai!');
+    //           </script>";
+    //           return false;
+    // }
+
+    // //enkripsi
+    // $password = password_hash($password,PASSWORD_DEFAULT);
+    
+
+    $query = "INSERT INTO admin (NIK, Nama, Alamat, Password, Level) 
+              VALUES 
+              ('$nik', '$nama', '$alamat', '$password', '$level')";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
