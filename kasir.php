@@ -2,7 +2,7 @@
 session_start();
 
 require 'functions.php';
-cekLogin("kasir");
+cekLogin("karyawan");
 
 ?>
 
@@ -16,5 +16,6 @@ cekLogin("kasir");
 <body>
     <h1>huh?</h1>
   <a href="logout.php">Logout</a>
+  <a href="data_produk.php">Data Produk</a>
 </body>
 </html>

@@ -4,8 +4,11 @@ require 'functions.php';
 
 
 // Cek session
-if (isset($_SESSION["login"])) {
-    header("Location: index.php");
+if( isset($_SESSION["login"])){
+    header("Location: admin.php");
+    exit;
+}else if ( isset($_SESSION["admin"])){
+    header("Location: kasir.php?ID=" . $_SESSION["ID"]);
     exit;
 }
 
@@ -24,6 +27,7 @@ if (isset($_POST["login"])) {
             $_SESSION["login"] = true;
             $_SESSION["Level"] = $row["Level"];
             $_SESSION['NIK'] = $row['NIK'];
+            $_SESSION['nama'] = $row['Nama'];
 
             // Redirect sesuai level
             if ($row["Level"] === "admin") {
@@ -65,7 +69,7 @@ if (isset($_POST["login"])) {
                 </li>
                 <li>
                     <label for="Password">Password</label>
-                    <input type="password" name="Password" id="Password" required>
+                    <input type="password" name="Password" id="Password" autocomplete="off" required>
                 </li>
                 <li>
                     <button type="submit" name="login">Login</button>
